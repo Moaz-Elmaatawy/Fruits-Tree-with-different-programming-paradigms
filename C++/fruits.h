@@ -19,6 +19,8 @@ private:
     string type;
     Fruit *left=NULL,*right=NULL;
 public:
+    string color="NULL";
+
     subFruit():weight(0),left(NULL),right(NULL){};
     subFruit(int val):weight(val),left(NULL),right(NULL){};
     subFruit(int val,string Type ,Fruit* left,Fruit* right):weight(val),type(Type),left(left),right(right){};
@@ -45,21 +47,175 @@ public:
         this->left=left;
     }
 };
-class Mango : public subFruit{
-private:
-    string color;
+//======================================================================================================
+class tinyFruit : public virtual subFruit{
 public:
-    virtual string getType(){
-        return "Mango";
+    int price;
+};
+
+class ovalShape : public virtual subFruit{
+public:
+    bool peelable;
+};
+
+class withSeedsInside : public virtual subFruit{
+public:
+    string seedSize;
+};
+
+class bigFruit : public virtual subFruit{
+public:
+    string eatSeason;
+};
+
+//======================================================================================================
+class banana : public subFruit{
+public:
+    banana(){
+        this->color=("Yellow");
+    }
+    string getType(){
+        return "banana";
+    }
+};
+
+class berry: public tinyFruit{
+public:
+    string origin;
+};
+
+class grapes : public tinyFruit{
+public:
+    grapes(){
+        this->color="Red";
+        this->price=15;
+    }
+    string getType(){
+        return "grapes";
+    }
+};
+
+class raspberry : public berry{
+public:
+    raspberry(){
+        this->color="Red";
+        this->price=150;
+        this->origin="Europe";
+    }
+    string getType(){
+        return "raspberry";
+    }
+};
+
+class blueberry : public berry{
+public:
+    blueberry(){
+        this->color="Blue";
+        this->price=60;
+        this->origin="North America";
+    }
+    string getType(){
+        return "blueberry";
+    }
+};
+
+class blackberry : public berry{
+public:
+    blackberry(){
+        this->color="Black";
+        this->price=70;
+        this->origin="Europe";
+    }
+    string getType(){
+        return "blackberry";
+    }
+};
+
+class orange : public ovalShape{
+public:
+    orange(){
+        this->color="Orange";
+        this->peelable=true;
+    }
+    string getType(){
+        return "orange";
+    }
+};
+
+class kiwi : public ovalShape , public withSeedsInside{
+public:
+    kiwi(){
+        this->color="Golden Brown";
+        this->peelable=true;
+        this->seedSize="small";
     }
 
+    string getType(){
+        return "kiwi";
+    }
 };
-class Banana : public subFruit{
-private:
-    string color;
+
+class mango : public ovalShape , public withSeedsInside{
 public:
-    virtual string getType(){
-        return "Banana";
+    mango(){
+        this->color="Orange-Yellow";
+        this->peelable=true;
+        this->seedSize="big";
     }
 
+    string getType(){
+        return "mango";
+    }
 };
+
+
+class apple : public ovalShape , public withSeedsInside{
+public:
+    apple(){
+        this->color="Red";
+        this->peelable=false;
+        this->seedSize="small";
+    }
+
+    string getType(){
+        return "apple";
+    }
+};
+
+class avocado : public ovalShape , public withSeedsInside{
+public:
+    avocado(){
+        this->color="Green";
+        this->peelable=true;
+        this->seedSize="medium";
+    }
+    string getType(){
+        return "avocado";
+    }
+};
+
+class watermelon : public bigFruit ,public ovalShape, public withSeedsInside{
+public:
+    watermelon(){
+        this->color="Green-red";
+        this->peelable=true;
+        this->seedSize="small";
+        this->eatSeason="summer";
+    }
+    string getType(){
+        return "watermelon";
+    }
+};
+
+class pineapple : public bigFruit ,public ovalShape{
+public:
+    pineapple(){
+        this->color="Green-gray";
+        this->peelable=true;
+        this->eatSeason="summer";
+    }
+    string getType(){
+        return "pineapple";
+    }
+};
+
